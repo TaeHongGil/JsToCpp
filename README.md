@@ -24,32 +24,32 @@ co 정렬 방법 (안되면 해당 내용 주석)
 ```
 
 ```
-\*.addAnimationComplete(
-    \*, (\*) = > {
+*.addAnimationComplete(
+    *, (*) = > {
         co(function \* () {
             try {
                 yield wait(500);
-                \*
-                \*
+                *
+                *
                 yield wait(\*);
-                \* 여러줄
-                \*
+                * 여러줄
+                *
             }
             catch (error) {
-                \* 1줄일경우만 실행
+                * 1줄일경우만 실행
             }
         }.bind(this));
     });
 
 =>
 
-\*->addAnimationComplete(\*,[this](string entry) {
+*->addAnimationComplete(\*,[this](string entry) {
     coFunctionWait(500, [this] {
-            \*
-            \*
+            *
+            *
             coFunctionWait(\*, [this] {});//wait
-            \*
-            \*
+            *
+            *
         });
 });
 ```
