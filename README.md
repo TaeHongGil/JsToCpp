@@ -2,6 +2,9 @@
 # 사용방법
 js파일을 맨위 class 부분 및 맨아래 } 지우고 cpp로 바꾼 뒤 
 포맷팅 후 사용 (https://studio-g.atlassian.net/wiki/spaces/slotduc/pages/424509629/VSCode)
+testPath에 따로 파일 만들어서 사용할 것
+
+잘안되는부분은 주석처리
 
 # 실행 전 따로 맞춰야하는 포맷
 \* -> 모든문자
