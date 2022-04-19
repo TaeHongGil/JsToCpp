@@ -61,6 +61,7 @@ public class CppReplaceProject {
 			text = text.replaceAll("ArrayUtils\\.", "ArrayUtils::");
 			text = text.replaceAll("CAnimateSlotBase\\.", "CAnimateSlotBase::");
 			text = text.replaceAll("SPIN_MODE\\.", "SPIN_MODE::");
+			text = text.replaceAll("DUG\\.log", "DLOG");
 	
 			text = text.replaceAll("(let|var) ", "auto ");
 			text = text.replaceAll("\\.length", "\\.size()");
@@ -68,11 +69,12 @@ public class CppReplaceProject {
 			text = text.replaceAll("\\.alpha = (.*);", "->setOpacity(255 * $1);");
 			text = text.replaceAll("\\.scale\\.x = (.*);", "->setScaleX($1);");
 			text = text.replaceAll("\\.scale\\.y = (.*);", "->setScaleY($1);");
-			text = text.replaceAll("\\.x = (.*);", "->setPositionX($1);");
-			text = text.replaceAll("\\.y = (.*);", "->setPositionY($1);");
-			//a -= 1 ,a += 1 형태 --> = a + 1로 바꾸고 실행
-			text = text.replaceAll("\\.x", "->getPositionX()");
-			text = text.replaceAll("\\.y", "->getPositionY()");
+
+			//position
+			text = text.replaceAll("(.*)\\.([xy]) ([-+*/%])= (.*);", "$1->setPosition\\u$2($1->getPosition\\u$2() $3 $4);");
+			text = text.replaceAll("(.*)\\.([xy]) = (.*);", "$1->setPosition\\u$2($3);");
+			text = text.replaceAll("(.*)\\.([xy]) ", "$1->getPosition\\u$2() ");
+
 			text = text.replaceAll("\\.push\\((.*)\\);", ".push_back($1);");
 			text = text.replaceAll("Math\\.floor\\((.*)\\)", "$1");
 			text = text.replaceAll("(onClickSpin\\(e\\)|onClickSpin\\(\\))", "onClickSpinBtn()");
