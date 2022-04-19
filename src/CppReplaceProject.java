@@ -15,8 +15,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CppReplaceProject {
-	private static String slotPath = "/Users/dg-2102-pn-002/work/mobile/duc/DUCM_SLOT_RENEW/client/DoubleUCasino/Classes/Game/slot";
-	private static String forderName = "/PiggyAdventure/";
+	private static String slotPath = "/";
+	private static String forderName = "/";
 	private static String className = "CSlot346PiggyAdventure";
 	private static String path = slotPath + forderName + className + ".cpp";
 	private static String testPath = "/Users/dg-2102-pn-002/work/mobile/cppReplaceProject/src/test.cpp";
@@ -25,7 +25,7 @@ public class CppReplaceProject {
 	public static void main(String[] args) {
 		addCommonString();
 
-		int mode = 2;
+		int mode = 1;
 		switch (mode) {
 			case 1:
 				replaceJsToCpp();
@@ -43,7 +43,7 @@ public class CppReplaceProject {
 	private static void replaceJsToCpp() {
 		String text;
 		try {
-			text = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+			text = new String(Files.readAllBytes(Paths.get(testPath)), StandardCharsets.UTF_8);
 			// text = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
 			//함수{}
 			text = text.replaceAll("\\n([\\w]*\\(.*\\))\\n", "\nvoid "+ className +"::$1\n");
@@ -58,8 +58,8 @@ public class CppReplaceProject {
 			text = text.replaceAll("super\\.", "super::");
 			text = text.replaceAll("CMiscUtils\\.", "CMiscUtils::");
 			text = text.replaceAll("ArrayUtils\\.", "ArrayUtils::");
-			commonString.add("CAnimateSlotBase\\::");
-			commonString.add("SPIN_MODE\\::");
+			text = text.replaceAll("CAnimateSlotBase\\.", "CAnimateSlotBase::");
+			text = text.replaceAll("SPIN_MODE\\.", "SPIN_MODE::");
 	
 			text = text.replaceAll("(let|var) ", "auto ");
 			text = text.replaceAll("\\.length", "\\.size()");
@@ -84,7 +84,7 @@ public class CppReplaceProject {
 			text = text.replaceAll("SetGoodLuck", "SetGoodLuck");
 			text = text.replaceAll("bonuspot_number = (.*);", "set_bonuspot_number($1);");
 			//_featuredMap변수 자신이 사용하는 변수명으로 바꿔줄 것
-			text = text.replaceAll("_featuredMap\\.([\\w]*)", "_featuredMap->HasMember(\"$1\")");
+			// text = text.replaceAll("_featuredMap\\.([\\w]*)", "_featuredMap->HasMember(\"$1\")");
 			// text = text.replaceAll("", "");
 			// text = text.replaceAll("", "");
 			// text = text.replaceAll("", "");
