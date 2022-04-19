@@ -49,6 +49,7 @@ public class CppReplaceProject {
 			text = text.replaceAll("\\n([\\w]*\\(.*\\))\\n", "\nvoid "+ className +"::$1\n");
 
 			//기타
+			text = text.replaceAll("\\= undefined;", "\\= nullptr;");
 			text = text.replaceAll("\\= null;", "\\= nullptr;");
 			text = text.replaceAll("== =", "==");
 			text = text.replaceAll("!= =", "!=");
